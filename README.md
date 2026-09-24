@@ -1,0 +1,26 @@
+# Budgeting Web — BID Accounts
+
+Web version starter based on `Budgeting 2.0.xlsx`.
+
+## Included
+- Authorized-only Budget ID login (`BID0001`, `BID0002`, ...)
+- Firebase Authentication + Firestore structure
+- Separate user data model
+- Dashboard inspired by the workbook: income, spend, remaining, savings, Needs/Wants/Savings breakdown, transactions and savings goals
+- Admin-only callable functions for account creation and account suspension
+- Firestore rules that isolate each user's data
+- Responsive mobile UI
+
+## Firebase setup
+1. Create a Firebase project and Web App.
+2. Copy the Web App config into `public/firebase-config.js`.
+3. Enable Email/Password Authentication.
+4. Create Firestore Database.
+5. Install Firebase CLI and run `firebase login` then `firebase use <project-id>`.
+6. Deploy with `firebase deploy`.
+7. Bootstrap your first administrator using Firebase Auth, then assign the `admin:true` custom claim using a trusted server/admin workflow.
+
+## Important
+The frontend deliberately does not create accounts or expose public registration. Account creation is designed to go through the secured `createBudgetUser` callable function. The final password is never stored in Firestore; Firebase Authentication stores it.
+
+The current UI is a safe first web build. Transaction/goal write operations should be connected through secured Firebase callable functions before production use.
