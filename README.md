@@ -24,3 +24,10 @@ Web version starter based on `Budgeting 2.0.xlsx`.
 The frontend deliberately does not create accounts or expose public registration. Account creation is designed to go through the secured `createBudgetUser` callable function. The final password is never stored in Firestore; Firebase Authentication stores it.
 
 The current UI is a safe first web build. Transaction/goal write operations should be connected through secured Firebase callable functions before production use.
+
+## Admin portal
+- Admin portal URL: `/admin.html`
+- Admin sign-in uses Firebase Authentication email/password.
+- Access is granted only when the signed-in Firebase user has the `admin: true` custom claim.
+- To bootstrap the first admin, create the admin user in Firebase Authentication, then run the trusted `functions/set-admin.js` script with a service-account credential. Do not put the service-account JSON or credentials in `public/` or commit them to GitHub.
+- After the claim is assigned, sign out and sign back in to refresh the ID token.
