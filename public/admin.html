@@ -3,48 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Budgeting | Admin</title>
+<title>Budgeting | Admin Portal</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-.admin-shell{min-height:100vh;background:var(--bg)}
-.admin-auth{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at top right,#ece8ff,transparent 38%),var(--bg)}
-.admin-card{width:min(440px,100%);background:#fff;padding:38px;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
-.admin-brand{display:flex;align-items:center;gap:12px;margin-bottom:26px}.admin-brand .brand-mark{margin:0}
-.admin-topbar{height:74px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 28px;gap:16px;position:sticky;top:0;z-index:5}.admin-topbar .brand{margin-right:auto}
-.admin-content{max-width:1250px;margin:0 auto;padding:30px 24px 70px}.admin-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}
-.admin-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.admin-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 7px 24px rgba(25,28,45,.035)}
-.admin-panel h3{margin-bottom:6px}.admin-table{width:100%;border-collapse:collapse;font-size:13px}.admin-table th,.admin-table td{text-align:left;padding:12px 9px;border-bottom:1px solid var(--line);vertical-align:middle}.admin-table th{font-size:11px;color:var(--muted);text-transform:uppercase}.pill{display:inline-flex;padding:5px 9px;border-radius:999px;background:#eef8f3;color:var(--good);font-size:11px;font-weight:800}.pill.suspended{background:#fff0f2;color:var(--danger)}.danger-btn{background:#fff0f2;color:var(--danger);border:1px solid #ffd5dc;padding:8px 10px;border-radius:9px;font-weight:700}.success{color:var(--good);font-size:13px}.hint{font-size:12px;color:var(--muted);line-height:1.5}.admin-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}.admin-stat article{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px}.admin-stat span{display:block;color:var(--muted);font-size:11px;font-weight:700}.admin-stat strong{display:block;font-size:25px;margin-top:6px}@media(max-width:900px){.admin-grid{grid-template-columns:1fr}}@media(max-width:600px){.admin-content{padding:22px 14px}.admin-topbar{padding:0 14px}.admin-stat{grid-template-columns:1fr}.admin-head{align-items:flex-start;flex-direction:column}.admin-table{min-width:720px}}
+:root{--admin-purple:#5b4bdb;--admin-purple2:#8a72ff;--admin-dark:#17152a;--admin-bg:#f7f7fb}
+.admin-shell{min-height:100vh;background:var(--admin-bg);color:var(--ink)}
+.admin-login{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 85% 10%,#e8e1ff 0,transparent 34%),linear-gradient(135deg,#f8f7ff,#f5f6fa)}
+.admin-login-card{width:min(470px,100%);background:#fff;border:1px solid #e8e7f2;border-radius:30px;padding:38px;box-shadow:0 28px 70px rgba(48,35,110,.12)}
+.logo-lockup{display:flex;align-items:center;gap:12px;margin-bottom:26px}.logo-lockup img{width:56px;height:56px;border-radius:16px;object-fit:cover}.logo-lockup strong{display:block;font-size:17px}.logo-lockup small{color:var(--muted)}
+.admin-layout{min-height:100vh;display:grid;grid-template-columns:250px 1fr}.admin-sidebar{background:linear-gradient(180deg,#1c1835,#151326);color:#fff;padding:24px 16px;display:flex;flex-direction:column;gap:26px}.admin-side-logo{display:flex;align-items:center;gap:11px;padding:4px 8px 16px;border-bottom:1px solid #ffffff16}.admin-side-logo img{width:42px;height:42px;border-radius:12px}.admin-side-logo strong{font-size:15px}.admin-side-logo small{display:block;color:#bdb8d4;font-size:10px;margin-top:2px}.admin-nav{display:grid;gap:7px}.admin-nav button{width:100%;text-align:left;background:transparent;color:#c8c3dc;padding:12px 13px;border-radius:11px;font-weight:700}.admin-nav button:hover,.admin-nav button.active{background:#ffffff12;color:#fff}.admin-sidebar .admin-note{margin-top:auto;background:#ffffff0b;border:1px solid #ffffff12;border-radius:14px;padding:13px;color:#bdb8d4;font-size:11px;line-height:1.5}.admin-main{min-width:0}.admin-topbar{height:78px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 30px;gap:10px;position:sticky;top:0;z-index:5}.admin-topbar .mobile-menu{display:none}.admin-topbar .spacer{margin-right:auto}.admin-user{display:flex;align-items:center;gap:10px}.admin-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#eeeaff;color:var(--admin-purple);font-weight:800}.admin-content{max-width:1400px;margin:0 auto;padding:30px 30px 70px}.admin-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.admin-head h1{font-size:30px;margin-bottom:5px}.admin-actions{display:flex;gap:10px}.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}.admin-stat-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 7px 24px rgba(25,28,45,.035)}.admin-stat-card .stat-icon{width:38px;height:38px;border-radius:11px;background:#efedff;color:var(--admin-purple);display:grid;place-items:center;font-weight:900;margin-bottom:15px}.admin-stat-card span{display:block;color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.05em}.admin-stat-card strong{display:block;font-size:27px;margin-top:5px}.admin-grid{display:grid;grid-template-columns:360px 1fr;gap:18px}.admin-panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 7px 24px rgba(25,28,45,.035)}.admin-panel h3{margin-bottom:5px}.admin-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:15px}.client-form label{margin:13px 0}.client-form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-table{width:100%;border-collapse:collapse;font-size:13px}.admin-table th,.admin-table td{text-align:left;padding:12px 9px;border-bottom:1px solid var(--line);vertical-align:middle}.admin-table th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.status-pill{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase}.status-active{background:#eaf8f1;color:var(--good)}.status-suspended{background:#fff0f2;color:var(--danger)}.client-name{font-weight:800}.client-sub{display:block;color:var(--muted);font-size:11px;margin-top:2px}.action-btn{background:#f2f0ff;color:var(--admin-purple);border:1px solid #dfdbff;padding:7px 10px;border-radius:9px;font-weight:750}.danger-btn{background:#fff0f2;color:var(--danger);border:1px solid #ffd5dc;padding:7px 10px;border-radius:9px;font-weight:750}.toolbar{display:flex;gap:10px;margin-bottom:12px}.toolbar input{max-width:300px}.success{color:var(--good);font-size:13px;min-height:18px}.hint{font-size:12px;color:var(--muted);line-height:1.5}.error{color:var(--danger);font-size:13px;min-height:18px}.password-box{margin-top:14px;padding:12px;border-radius:12px;background:#f7f5ff;border:1px solid #e5e0ff}.password-box strong{color:var(--admin-purple);word-break:break-all}.hidden{display:none!important}@media(max-width:1050px){.admin-layout{grid-template-columns:1fr}.admin-sidebar{display:none}.admin-stats{grid-template-columns:1fr 1fr}.admin-grid{grid-template-columns:1fr}.admin-topbar .mobile-menu{display:block}}@media(max-width:650px){.admin-content{padding:22px 14px}.admin-topbar{padding:0 14px}.admin-stats{grid-template-columns:1fr}.admin-head{align-items:flex-start;flex-direction:column}.client-form .row{grid-template-columns:1fr}.admin-table{min-width:850px}.admin-panel.table-panel{overflow:hidden}}
 </style>
 </head>
 <body>
 <div id="adminApp">
-<section id="adminLogin" class="admin-auth">
-<div class="admin-card">
-<div class="admin-brand"><div class="brand-mark">B</div><div><strong>Budgeting Admin</strong><small class="muted" style="display:block">Administrator Portal</small></div></div>
-<p class="eyebrow">SECURE ADMIN ACCESS</p><h1>Admin sign in</h1><p class="muted">Use the Firebase administrator account assigned to this portal.</p>
-<form id="adminLoginForm">
-<label>Email<input id="adminEmail" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
-<label>Password<input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter password"></label>
-<button class="primary" type="submit">Sign in as admin</button><p id="adminLoginError" class="error"></p>
-</form>
-<p class="hint">Admin access is controlled by a Firebase <code>admin</code> custom claim. A normal Budget ID account cannot enter this portal.</p>
-</div>
+<section id="adminLogin" class="admin-login">
+  <div class="admin-login-card">
+    <div class="logo-lockup"><img src="budgeting-logo.png" alt="Budgeting"><div><strong>Budgeting</strong><small>Administrator Portal</small></div></div>
+    <p class="eyebrow">SECURE ADMIN ACCESS</p><h1>Manage your clients</h1><p class="muted">Create Budget IDs, issue temporary passwords, and control client access.</p>
+    <form id="adminLoginForm">
+      <label>Email<input id="adminEmail" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
+      <label>Password<input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter password"></label>
+      <button class="primary" style="width:100%;margin-top:8px" type="submit">Sign in to Admin</button><p id="adminLoginError" class="error"></p>
+    </form>
+    <p class="hint">Only Firebase accounts with the <code>admin</code> custom claim can access this portal.</p>
+  </div>
 </section>
 <section id="adminDashboard" class="hidden admin-shell">
-<header class="admin-topbar"><div class="brand"><span class="brand-mark small">B</span><div><strong>Budgeting Admin</strong><small id="adminUserLabel">Administrator</small></div></div><button id="adminRefresh" class="ghost">Refresh</button><button id="adminLogout" class="ghost">Log out</button></header>
-<main class="admin-content">
-<div class="admin-head"><div><p class="eyebrow">ADMINISTRATION</p><h2>Budget accounts</h2><p class="muted">Create authorized Budget IDs and manage account status.</p></div></div>
-<div class="admin-stat"><article><span>Total accounts</span><strong id="statTotal">0</strong></article><article><span>Active</span><strong id="statActive">0</strong></article><article><span>Suspended</span><strong id="statSuspended">0</strong></article></div>
-<div class="admin-grid">
-<section class="admin-panel"><div class="panel-head"><div><h3>Create Budget account</h3><p class="hint">The temporary password is used only to create the Firebase account. The final password is not stored in Firestore.</p></div></div>
-<form id="createUserForm">
-<label>First name<input id="newFirstName" required></label><label>Last name<input id="newLastName"></label><label>Email<input id="newEmail" type="email" required></label><label>Budget ID<input id="newBudgetId" placeholder="BID0002" required></label><label>Temporary password<input id="newTempPassword" type="password" minlength="6" required></label><button class="primary" type="submit">Create account</button><p id="createMessage" class="error"></p>
-</form></section>
-<section class="admin-panel"><h3>Account list</h3><p id="listMessage" class="hint">Loading accounts…</p><div class="table-wrap"><table class="admin-table"><thead><tr><th>Budget ID</th><th>Name</th><th>Email</th><th>Status</th><th>Action</th></tr></thead><tbody id="userRows"></tbody></table></div></section>
+<div class="admin-layout">
+<aside class="admin-sidebar">
+  <div class="admin-side-logo"><img src="budgeting-logo.png" alt="Budgeting"><div><strong>Budgeting</strong><small>ADMIN PORTAL</small></div></div>
+  <nav class="admin-nav"><button class="active">▦ &nbsp; Dashboard</button><button id="focusClients">♙ &nbsp; Clients</button></nav>
+  <div class="admin-note"><strong>Client access</strong><br>Create an account with a temporary password. The client changes it after first login.</div>
+  <button id="adminLogout" class="ghost" style="background:#ffffff0c;color:#fff;border-color:#ffffff18">Log out</button>
+</aside>
+<main class="admin-main">
+<header class="admin-topbar"><button class="ghost mobile-menu">☰</button><div class="spacer"></div><div class="admin-user"><div class="admin-avatar">A</div><div><strong id="adminUserLabel">Administrator</strong><small class="muted" style="display:block">Admin</small></div></div></header>
+<div class="admin-content">
+  <div class="admin-head"><div><p class="eyebrow">ADMINISTRATION</p><h1>Client accounts</h1><p class="muted">Create and manage the people who can use your budgeting page.</p></div><div class="admin-actions"><button id="adminRefresh" class="ghost">Refresh</button><button id="scrollCreate" class="primary">+ New client</button></div></div>
+  <div class="admin-stats"><article class="admin-stat-card"><div class="stat-icon">#</div><span>Total clients</span><strong id="statTotal">0</strong></article><article class="admin-stat-card"><div class="stat-icon">✓</div><span>Active</span><strong id="statActive">0</strong></article><article class="admin-stat-card"><div class="stat-icon">!</div><span>Suspended</span><strong id="statSuspended">0</strong></article><article class="admin-stat-card"><div class="stat-icon">B</div><span>Portal</span><strong>Ready</strong></article></div>
+  <div class="admin-grid">
+    <section id="createClientPanel" class="admin-panel">
+      <div class="admin-panel-head"><div><h3>Create client account</h3><p class="hint">The temporary password is only for the client's first login. Their final password is not stored by the admin.</p></div></div>
+      <form id="createUserForm" class="client-form">
+        <div class="row"><label>First name<input id="newFirstName" required></label><label>Last name<input id="newLastName"></label></div>
+        <label>Client email<input id="newEmail" type="email" required placeholder="client@email.com"></label>
+        <label>Budget ID<input id="newBudgetId" placeholder="BID0002" required></label>
+        <label>Temporary password<input id="newTempPassword" type="password" minlength="6" required placeholder="At least 6 characters"></label>
+        <button class="primary" style="width:100%" type="submit">Create client account</button><p id="createMessage" class="error"></p>
+        <div id="createdPasswordBox" class="password-box hidden"><span class="hint">Account created. Give the client their temporary password now:</span><br><strong id="createdAccountText"></strong></div>
+      </form>
+    </section>
+    <section id="clientsPanel" class="admin-panel table-panel">
+      <div class="admin-panel-head"><div><h3>Clients</h3><p id="listMessage" class="hint">Loading accounts…</p></div></div>
+      <div class="toolbar"><input id="clientSearch" placeholder="Search Budget ID or client name"></div>
+      <div class="table-wrap"><table class="admin-table"><thead><tr><th>Budget ID</th><th>Client</th><th>Email</th><th>Status</th><th>Action</th></tr></thead><tbody id="userRows"></tbody></table></div>
+    </section>
+  </div>
 </div>
-</main>
-</section>
-</div>
+</main></div>
+</section></div>
 <script type="module" src="admin.js"></script>
-</body>
-</html>
+</body></html>

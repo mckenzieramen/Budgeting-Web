@@ -31,3 +31,13 @@ The current UI is a safe first web build. Transaction/goal write operations shou
 - Access is granted only when the signed-in Firebase user has the `admin: true` custom claim.
 - To bootstrap the first admin, create the admin user in Firebase Authentication, then run the trusted `functions/set-admin.js` script with a service-account credential. Do not put the service-account JSON or credentials in `public/` or commit them to GitHub.
 - After the claim is assigned, sign out and sign back in to refresh the ID token.
+
+## Budgeting Admin Portal
+
+- Client portal: `/`
+- Admin portal: `/admin.html`
+- Admins must have the Firebase `admin` custom claim.
+- Admin creates a client with a Budget ID and temporary password.
+- Client signs in using the Budget ID and temporary password, then must choose a private password.
+- Client final passwords are never stored in Firestore.
+- New client Firebase Auth identities use a synthetic internal sign-in email derived from the Budget ID; the client's real email is stored only as contact information.
